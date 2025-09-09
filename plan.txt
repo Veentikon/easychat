@@ -1,0 +1,33 @@
+Port for initial client-server connection: 1024
+
+chatserver.c:
+listens  for incoming connectiosn on port 1024
+once a user connects, sets up a user profile (username) and saves their port into a list.
+when a user sends a message, the server broadcasts the message to all the other logged-in
+users
+Users should be able to query current users.
+Most likely multithreading will be required, unless there is a mechanism to move on to next
+code line.
+
+
+chatclient.c:
+Has a REPL (Real Evaluate Print Loop). I'ts an interactive loop that continuously accepts
+input from the user, processes it and responds depending on the input.
+Ex. user enters "users", chatclient evaluates, and sends the command to server which then
+returns a list of users to client which then prints the result to the console.
+
+Pseudo-code:
+
+connect to server with passing the username received as an argument (arg)
+print command options
+while true do:
+	input = userinput
+	if userinput == users:
+		users = server.getusers
+		print(users)
+	elif userinput == write:
+		while input != <exit>:
+			input = userinput
+			server.sendinput(userinput)
+	
+	
