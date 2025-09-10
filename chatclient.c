@@ -8,7 +8,8 @@
 
 
 int main(int argc, char *argv[]) {
-    
+    char username[256] = "Eva";   
+
     // Create a socket
     int netsocket;
     netsocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]) {
 
     // receive data from server 
     char server_response[256];
+    send(netsocket, username, sizeof(username), 0);
     recv(netsocket, &server_response, sizeof(server_response), 0);
     
     printf("server %s\n", server_response);

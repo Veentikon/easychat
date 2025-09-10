@@ -11,11 +11,22 @@
 #include <pthread.h> // threads
 
 
-int main(int argc, char *argv[]) {
-    printf("Hello, server is running...\n");    
-    char server_message[256] = "you have reached the server";
+void *serve_thread(void * arg) {
+    char msg[256] = "Hello from the new thread\n";
+    int* client_socket = (int *) arg; 
+    printf("thread created, sending message on socket: %d\n", *client_socket);
+    send(*client_socket, msg, sizeof(msg), 0);
 
-    // create server socket    
+    return NULL;
+}
+
+
+int main(int argc, char *argv[]) {
+    char server_message[256]; // server message buffer
+    char client_message[256]; // client message buffer
+    pthread_t thread_id;
+    
+    // create server socket
     int server_socket = socket(AF_INET, SOCK_STREAM, 0);
 
     // define the server address structure
@@ -32,11 +43,29 @@ int main(int argc, char *argv[]) {
 
     int client_socket;
     client_socket = accept(server_socket, NULL, NULL);
+    recv(client_socket, &client_message, sizeof(client_message), 0);
 
-    printf("%d\n", client_socket);
-    send(client_socket, server_message, sizeof(server_message), 0);
+    // TODO: test username uniqueness, if unique :
+    // create entry with socket and username and spawn a thread to handle the connection
+    // If not, send an error message
+    if (1 == 1) {
+        
+        int result;
+        result = pthread_create(&thread_id, NULL, serve_thread, (void *) &client_socket);
+        if (result != 0) {
+            fprintf(stderr, "Error creating thread: %d\n", result);
+            return 1;
+        }
+    }
+    // TODO: send error message if username is taken
+    //send(client_socket, server_message, sizeof(server_message), 0);
+    
+    pthread_join(thread_id, NULL); // wait for the new thread to finish
+
+    printf("Hello from the main thread!\n");
 
     close(server_socket);
 
     return 0;
 }
+
