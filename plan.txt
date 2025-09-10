@@ -1,7 +1,7 @@
-Port for initial client-server connection: 1024
+Port for initial client-server connection: 9000
 
 chatserver.c:
-listens  for incoming connectiosn on port 1024
+listens  for incoming connectiosn on port 9000
 once a user connects, sets up a user profile (username) and saves their port into a list.
 when a user sends a message, the server broadcasts the message to all the other logged-in
 users
@@ -28,7 +28,7 @@ while true do:
 		users = server.getusers
 		print(users)
 	elif userinput == write:
-		while input != <exit>:
+		while input != EXIT:
 			input = userinput
 			server.sendinput(userinput)
 	
