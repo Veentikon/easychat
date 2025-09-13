@@ -8,6 +8,12 @@
 
 
 int main(int argc, char *argv[]) {
+    // Valiate user input
+    if (argc < 2) {
+        printf("Error: expected 1 argument <username>");
+        return -1;
+    }
+
     char username[256] = "Eva";   
 
     // Create a socket
@@ -30,7 +36,10 @@ int main(int argc, char *argv[]) {
     send(netsocket, username, sizeof(username), 0);
     recv(netsocket, &server_response, sizeof(server_response), 0);
     
-    printf("server %s\n", server_response);
+    
+    printf("server>: %s\n", server_response);
+    recv(netsocket, &server_response, sizeof(server_response), 0);
+    printf("thread>: %s\n", server_response);
 
     close(netsocket);
     return 0;
