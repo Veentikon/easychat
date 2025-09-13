@@ -7,6 +7,18 @@
 #include <netinet/in.h> // sockaddr_in
 
 
+//TODO 1 (in separatate method)
+// Create thread to listen for server messages
+// All it does is run a while true loop and repeatedly call recv()
+
+//TODO 2 (in main function)
+// Create a REPL to read, evaluate, print in a loop
+// User input support: users, write, options, exit
+
+//TODO 3
+// Read username from argv, validate and send it in a message to the server.
+
+
 int main(int argc, char *argv[]) {
     // Valiate user input
     if (argc < 2) {
