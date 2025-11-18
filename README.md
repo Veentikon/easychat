@@ -1,11 +1,11 @@
-EasyChat
+#EasyChat
 
 A simple, secure communication channel using Tailscale and SSH.
 
 EasyChat provides a lightweight and private way for users to communicate over a secure network without complex networking setup.
 By leveraging Tailscale for mesh VPN connectivity and SSH for encrypted terminal messaging, EasyChat makes it easy to deploy a trusted communication environment.
 
-Features
+##Features
 
 🔒 Secure, encrypted communication over SSH
 
@@ -17,7 +17,7 @@ Features
 
 ⚙️ Optional C client/server program for streamlined messaging (docs coming soon)
 
-Requirements
+##Requirements
 Hardware / Software
 
 A Linux server (any distribution)
@@ -28,7 +28,7 @@ Tailscale installed on all machines
 
 SSH (OpenSSH)
 
-Optional
+##Optional
 
 C compiler (e.g., gcc) for the enhanced client/server program
 
