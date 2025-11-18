@@ -172,6 +172,47 @@ Documentation for the enhanced messaging system will be added later.
 
 MIT
 
+## Feature Enhancements
+
+#### Enhanced Chat (Optional Module)
+
+EasyChat includes an additional C-based socket chat application that provides a more streamlined, interactive messaging experience.
+
+The enhanced module is located in:
+
+#### enhanced-chat/
+
+This module contains:
+
+chatclient.c – TCP client
+
+chatserver.c – TCP server
+
+chatroom.h – shared header
+
+Makefile – build automation
+
+plan.txt – initial design notes & usage examples
+
+## Building the Enhanced Chat App
+
+From inside the enhanced-chat directory:
+
+make
+
+This compiles both the client and server binaries.
+
+#### Usage
+
+(You can add this now or leave it to the separate README.)
+
+#### For example:
+
+./chatserver <port>
+./chatclient <server-ip> <port>
+
+##### More detailed documentation is included in plan.txt and will be expanded in a dedicated README.
+
 ## Contributing
 
 Contributions, ideas, and enhancements are welcome!
