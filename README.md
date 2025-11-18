@@ -1,4 +1,4 @@
-#EasyChat
+# EasyChat
 
 A simple, secure communication channel using Tailscale and SSH.
 
@@ -17,7 +17,7 @@ By leveraging Tailscale for mesh VPN connectivity and SSH for encrypted terminal
 
 ⚙️ Optional C client/server program for streamlined messaging (docs coming soon)
 
-##Requirements
+## Requirements
 Hardware / Software
 
 A Linux server (any distribution)
@@ -28,7 +28,7 @@ Tailscale installed on all machines
 
 SSH (OpenSSH)
 
-##Optional
+## Optional
 
 C compiler (e.g., gcc) for the enhanced client/server program
 
@@ -156,23 +156,23 @@ Future Enhancements
 This project includes (or will include) a custom C client/server program for more streamlined and user-friendly messaging.
 Documentation for the enhanced messaging system will be added later.
 
-Security Considerations
+## Security Considerations
 
-Only grant access to trusted users.
+### Only grant access to trusted users.
 
-Prefer SSH key authentication over passwords.
+### Prefer SSH key authentication over passwords.
 
-Never enable mesg y for root.
+### Never enable mesg y for root.
 
-Use Tailscale ACLs to control user access.
+### Use Tailscale ACLs to control user access.
 
-Consider restricting SSH to Tailscale’s interface only.
+### Consider restricting SSH to Tailscale’s interface only.
 
-License
+## License
 
-Add your preferred license here (MIT recommended for simple tools).
+MIT
 
-Contributing
+## Contributing
 
 Contributions, ideas, and enhancements are welcome!
 Feel free to submit issues or pull requests.
