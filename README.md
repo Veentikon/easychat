@@ -205,6 +205,7 @@ This compiles both the client and server binaries.
 #### Usage
 
 _./chatserver_
+
 _./chatclient <username>_
 
 ##### More detailed documentation is included in plan.txt and will be expanded in a dedicated README.
