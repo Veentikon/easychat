@@ -1,0 +1,80 @@
+Port for initial client-server connection: 9000
+
+chatserver.c:
+listens  for incoming connectiosn on port 9000
+once a user connects, sets up a user profile (username) and saves their port into a list.
+when a user sends a message, the server broadcasts the message to all the other logged-in
+users
+Users should be able to query current users.
+Most likely multithreading will be required, unless there is a mechanism to move on to next
+code line.
+Need two threads at least, one listens for incoming connections
+The others are created per client.
+
+
+chatclient.c:
+Has a REPL (Real Evaluate Print Loop). I'ts an interactive loop that continuously accepts
+input from the user, processes it and responds depending on the input.
+Ex. user enters "users", chatclient evaluates, and sends the command to server which then
+returns a list of users to client which then prints the result to the console.
+
+Pseudo-code:
+
+connect to server with passing the username received as an argument (arg)
+print command options
+while true do:
+	input = userinput
+	if userinput == users:
+		users = server.getusers
+		print(users)
+	elif userinput == write:
+		while input != EXIT:
+			input = userinput
+			server.sendinput(userinput)
+	
+In addition to the above the client should have a thread that listens for incoming mess-
+ages and prints them in order to not interrupt the main messaging loop.
+
+
+------------------ Development Steps ----------------------
+1. Server: accept 1 client and echo back messages
+2. Server: accept multiple clients (threads, no mutex yet)
+3. Add mutex + user list
+4. Implement users command
+5. Add broadcast
+6. Add client REPL with write and <exit>
+
+
+
+Couple things to know:
+sockets
+TCP, UDP
+fgets(), strtok() for receiving/parsing user input
+socket, bind, listen, accept (server)
+connect (client)
+send, recv (both sides)
+
+pthread_create, ptrhead_detach
+pthread_mutex_t (wrap modifications to shared objects/data with mutex)
+
+How to check type of user input/command
+strip /n from fgets
+
+Makefile, separate chatserver, chatclient
+
+
+
+General flow and language for client-server communication
+1. client connects and immediately sends "HELLO <username>"
+2. server responds with either "WELCOME <username>" or "ERROR name taken"
+3. user sends "USERS"
+4. server responds with "USERS alice bob ..."
+5. client "WRITE"
+6. server "Ok WriteMode"
+7. client sends messages "MSG Hello there"
+8. client sends messages which are broadcast in the format "FROM <username> ..."
+9. client sends "EXIT" to exit write mode
+10. server responds Ok ExitWrite
+11. client sends "QUIT"
+12. server "BYE <username>"
+13. server removes user from the list and delets child process	
